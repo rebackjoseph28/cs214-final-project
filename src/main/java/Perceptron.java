@@ -42,7 +42,9 @@ public class Perceptron{
 
     private int findLabel(String filename){
         int indexOf_ = filename.lastIndexOf('s')+1;
-        int type = Integer.parseInt(filename.substring(indexOf_,indexOf_+1));
+        int type;
+        try { type = Integer.parseInt(filename.substring(indexOf_,indexOf_+1));
+        } catch (NumberFormatException e){ type = -1; }
         return type;
     }
 

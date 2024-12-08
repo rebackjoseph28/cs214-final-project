@@ -15,7 +15,7 @@ public class Training_Set {
     private void TrainEpochs(){
         for(int i = 1; i <= num_classes; i++){
             Epoch e = new Epoch(images,i);
-            e.runNEpoch(100);
+            e.runNEpoch(1000);
             training_set.add(e);
         }
     }
@@ -26,6 +26,7 @@ public class Training_Set {
             classTypes.add(image.getClassType());
         }
         num_classes = classTypes.size();
+        System.out.println("Number of Classes: " + num_classes);
         if (num_classes < 2) System.err.println("ERROR TOO FEW CLASSES");
     }
 
@@ -39,5 +40,9 @@ public class Training_Set {
             if (denominator != 0) total += 1/denominator;
         }
         return total;
+    }
+
+    public ArrayList<Epoch> getEpochs(){
+        return training_set;
     }
 }

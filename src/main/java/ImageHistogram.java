@@ -27,6 +27,9 @@ public class ImageHistogram {
 
     public Perceptron perceptron;
 
+    private String buffer;
+    private String bestFit;
+
     /**
      * Constructs the image histogram using helper classes
      * @see initImage
@@ -90,6 +93,8 @@ public class ImageHistogram {
     private void initImage() {
         String format = scanner.next();
         if (format.equals("P2")) {
+            buffer = scanner.nextLine();
+            buffer = scanner.nextLine();
             width = readInt(scanner.next());
             height = readInt(scanner.next());
             maximum = readInt(scanner.next());
@@ -220,5 +225,13 @@ public class ImageHistogram {
         int indexOf_ = filename.lastIndexOf('s')+1;
         int type = Integer.parseInt(filename.substring(indexOf_,indexOf_+1));
         return type;
+    }
+
+    public void setBestFit(String bf){
+        bestFit = bf;
+    }
+
+    public String getBestFit(){
+        return bestFit;
     }
 }
