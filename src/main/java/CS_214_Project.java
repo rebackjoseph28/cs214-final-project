@@ -9,7 +9,7 @@ public class CS_214_Project {
         //  > ^ < 
         // "The end of a melody is not its goal: but nonetheless, had the melody not reached its end it would not have reached its goal either." --Someone 
         
-        try{
+        //try{
             File_Processor fp_tr = new File_Processor(args[0]);
             File_Processor fp_ts = new File_Processor(args[1]);
             //int k = Integer.parseInt(args[2]);
@@ -23,9 +23,9 @@ public class CS_214_Project {
             Classifier cf = new Classifier(test_set, tr.getEpochs(), cr.getClassList());
             System.out.print(cf.toString());
 
-        } catch (IndexOutOfBoundsException e){
-            System.err.println("Error: No Arguments Given");
-            System.exit(0);
-        }
+        //} //catch (IndexOutOfBoundsException e){
+            //System.err.println("Error: No Arguments Given");
+            //System.exit(0);
+        //}
     }
 }

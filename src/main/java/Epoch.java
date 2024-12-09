@@ -4,6 +4,8 @@ public class Epoch{
     int N;
     ArrayList<ImageHistogram> images;
     Perceptron p;
+    final double learningRate = 0.01;
+    final double lambda = 0.001;
     
     public Epoch(ArrayList<ImageHistogram> images, int N){
         this.images = images;
@@ -13,8 +15,7 @@ public class Epoch{
 
     public void runEpoch(){
         for (int i = 0; i < images.size(); i++){
-            p.updateImage(images.get(i));
-            p.evaluate();
+            p = trainImage(images.get(i));
         }
     }
     
@@ -38,7 +39,7 @@ public class Epoch{
     public Perceptron trainImage(ImageHistogram i){
         Perceptron p_out = p;
         p_out.updateImage(i);
-        p_out.evaluate();
+        p_out.evaluate(learningRate,lambda);
         return p_out;
     }
 }

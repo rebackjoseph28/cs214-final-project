@@ -11,27 +11,27 @@ public class Classifier {
         classify();
     }
 
-    public void classify(){
-        int bestFitIndex = -1;
-        double current = 0;
-        double bestFit = Double.NEGATIVE_INFINITY;
-        for (ImageHistogram image : images){
-            for(Epoch e : epochs){
-                current = e.getPerceptron().evaluateImage(image);
-                if (current >= bestFit){
+    public void classify() {
+        for (ImageHistogram image : images) {
+            int bestFitIndex = -1;
+            double bestFit = Double.NEGATIVE_INFINITY;
+            for (int i = 0; i < epochs.size(); i++) {
+                Epoch e = epochs.get(i);
+                double current = e.getPerceptron().evaluateImage(image);
+                if (current > bestFit) {
                     bestFit = current;
-                    bestFitIndex = epochs.indexOf(e);
+                    bestFitIndex = i;
                 }
             }
-            //System.out.println("Best Fit: " + bestFit + ", " + bestFitIndex);
-            addToList(epochs.get(bestFitIndex), image, current);
-            bestFitIndex = -1;
-            bestFit = Double.NEGATIVE_INFINITY;
+            if (bestFitIndex != -1) {
+                addToList(epochs.get(bestFitIndex), image, bestFit);
+            }
         }
     }
+    
 
     private void addToList(Epoch e, ImageHistogram image, double current){
-        int class_num = e.N;
+        int class_num = e.N-1;
         //System.out.println("Class: " + class_num);
         String out = names.get(class_num);
         image.setBestFit(out);

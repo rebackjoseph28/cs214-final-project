@@ -23,3 +23,9 @@ gradle run -q --args="'input_files/train.txt' 'input_files/test.txt' 'input_file
 - Gimp adds an extra line to pgm files
 - Index out of range
 - The comparison not working
+
+## Things I've modified
+- Added a class name reader
+- Added a new classifier class
+- Added class labels
+- Added regularization

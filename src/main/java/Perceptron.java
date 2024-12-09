@@ -14,9 +14,10 @@ public class Perceptron{
         updateLabel(N, image);
     }
 
-    public void updateWeights(){
+    public void updateWeights(double learningRate, double lambda){
         for(int index = 0; index < 64; index++){
-            weights[index] += (d-y)*(image.getHistogram()[index]);
+            //regularized to penalize large values
+            weights[index] +=  learningRate * ((d-y) * image.getHistogram()[index] - lambda * weights[index]);
         }
     }
 
@@ -27,8 +28,8 @@ public class Perceptron{
         }
     }
 
-    public void updateBias(){
-        weights[64] += (d-y);
+    public void updateBias(double learningRate){
+        weights[64] += learningRate*(d-y);
     }
 
     public double[] getWeight(){
@@ -48,18 +49,19 @@ public class Perceptron{
         return type;
     }
 
-    public void evaluate(){
+    public void evaluate(double learningRate, double lambda){
         updatePerceptron();
-        updateWeights();
-        updateBias();
+        updateWeights(learningRate,lambda);
+        updateBias(learningRate);
     }
 
     public double evaluateImage(ImageHistogram im){
         double y_out = 0.0;
         for (int i = 0; i < 64; i++){
-            y_out += weights[i]*(im.getAverage()[i]);
+            y_out += weights[i]*(im.getHistogram()[i]);
         }
-        y_out += findLabel(im.getFilename())-y;
+        y_out += findLabel(im.getFilename()) == N ? 1-y : -1-y;
+        System.out.println("EVAL: " + N + ":" + im.getFilename() + ", " + y_out);
         return y_out;
     }
 }
