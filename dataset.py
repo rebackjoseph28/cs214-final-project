@@ -38,7 +38,9 @@ os.makedirs(output_dir, exist_ok=True)
 
 # textfile for saving filenames
 output_txt_path = os.path.join(output_dir, "filenames.txt")
-with open(output_txt_path, 'w') as txt_file:
+
+# Open the file in append mode
+with open(output_txt_path, 'a') as txt_file:
 
     # Data aug configs
     datagen = ImageDataGenerator(
@@ -55,7 +57,7 @@ with open(output_txt_path, 'w') as txt_file:
         filename = os.path.join(file_path, f"{class_name}_{index}.pgm")
         img = load_img(filename, color_mode="grayscale")  # Load as grayscale
         x = img_to_array(img).squeeze()  # make image into array
-        x = x.reshape((1,) + x.shape + (1,)) # reshape image
+        x = x.reshape((1,) + x.shape + (1,))  # reshape image
 
         # make the augmented image
         i = 0
@@ -63,9 +65,9 @@ with open(output_txt_path, 'w') as txt_file:
             augmented_image = batch[0].squeeze()  # get the image made
             output_filename = os.path.join(output_dir, f"{class_name}_{index}_aug_{i + 1}.pgm")
             
-            save_as_pgm_ascii(augmented_image, output_filename) # save as ascii pgm file
+            save_as_pgm_ascii(augmented_image, output_filename)  # save as ascii pgm file
 
-            txt_file.write(output_filename + "\n") # make the filename into the text file
+            txt_file.write(output_filename + "\n")  # append the filename to the text file
 
             i += 1
             if i >= 5:  # make 5 images per input

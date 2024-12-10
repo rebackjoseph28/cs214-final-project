@@ -29,8 +29,15 @@ gradle run -q --args="'input_files/train.txt' 'input_files/test.txt' 'input_file
 - Added a new classifier class
 - Added class labels
 - Added regularization
+- dataset augmentation
 
 ## Dataset Augmetor
 - called dataset.py
 - to run you'll have to run it on your own machine I couldn't get it working on this machine
-I tried using a venv, but it worked on my machine so I just copied the files over
+I tried using a venv, but it worked on my machine so I just copied the files over, not integral
+to the code, but a nice quality of life improvement.
+
+One thing that's also nice is that it outputs all filenames to filenames.txt in your working directory
+in the format that the code takes.
+
+to run, read the header of the python file.
