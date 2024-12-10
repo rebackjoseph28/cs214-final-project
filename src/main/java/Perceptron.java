@@ -4,11 +4,13 @@ public class Perceptron{
     double y = 0;
     double[] weights = new double[65]; 
     double learningRate;
-    double lambda;   
+    double lambda;  
+    int num_classes; 
 
-    public Perceptron(ImageHistogram image, int N){
+    public Perceptron(ImageHistogram image, int N, int num_classes){
         this.image = image;
         this.N = N;
+        this.num_classes = num_classes;
     }
 
     public void updateImage(ImageHistogram image){
@@ -16,13 +18,12 @@ public class Perceptron{
         updateLabel(N, image);
     }
 
-    public void updateWeights(double learningRate, double lambda){
-        this.learningRate = learningRate;
-        this.lambda = lambda;
+    public void updateWeights(){
         for(int index = 0; index < 64; index++){
             //regularized to penalize large values
             weights[index] +=  learningRate * ((d-y) * image.getHistogram()[index] - lambda * weights[index]);
         }
+        weights[64] += learningRate * (d - y);
     }
 
     public void updatePerceptron(){
@@ -32,17 +33,12 @@ public class Perceptron{
         }
     }
 
-    public void updateBias(double learningRate){
-        weights[64] += learningRate*(d-y);
-    }
-
     public double[] getWeight(){
         return weights;
     }
 
     private void updateLabel(int N, ImageHistogram image){
-        if (findLabel(image.getFilename()) == N) d = 1;
-        else d = -1;
+        d = (findLabel(image.getFilename()));
     }
 
     private int findLabel(String filename){
@@ -54,18 +50,32 @@ public class Perceptron{
     }
 
     public void evaluate(double learningRate, double lambda){
+        this.learningRate = learningRate;
+        this.lambda = lambda;
         updatePerceptron();
-        updateWeights(learningRate,lambda);
-        updateBias(learningRate);
+        updateWeights();
     }
 
     public double evaluateImage(ImageHistogram im){
-        double y_out = 0.0;
-        for (int i = 0; i < 64; i++){
-            y_out += learningRate * ((d-y) * image.getHistogram()[i] - lambda * weights[i]);
+        double outputs[] = new double[num_classes];
+        for (int i = 0; i < num_classes; i++) {
+            outputs[i] = weights[(i * 64 + 64)]; // Bias term for this class
+            for (int j = 0; j < 64; j++) {
+                outputs[i] += weights[(i * 64 + i)] * im.getHistogram()[i];
+            }
         }
-        y_out += findLabel(im.getFilename()) == N ? 1-y : -1-y;
-        System.out.println("EVAL: " + N + ":" + im.getFilename() + ", " + y_out);
-        return y_out;
+        return predictClass(outputs);
+    }
+
+    private double predictClass(double outputs[]){
+        int predictedClass = -1;
+        double maxOutput = Double.NEGATIVE_INFINITY;
+        for (int i = 0; i < num_classes; i++) {
+            if (outputs[i] > maxOutput) {
+                maxOutput = outputs[i];
+                predictedClass = i + 1;
+            }
+        }
+        return predictedClass;
     }
 }

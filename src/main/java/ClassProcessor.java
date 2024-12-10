@@ -25,6 +25,7 @@ public class ClassProcessor {
         while (scnr.hasNext()){
             classes.add(scnr.nextLine());
         }
+        //System.out.println("Number of Class Names: " + classes.size());
     }
 
     public ArrayList<String> getClassList(){

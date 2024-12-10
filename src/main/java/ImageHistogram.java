@@ -27,7 +27,7 @@ public class ImageHistogram {
 
     public Perceptron perceptron;
 
-    private String buffer;
+    private String buffer = "";
     private String bestFit;
 
     /**
@@ -93,8 +93,9 @@ public class ImageHistogram {
     private void initImage() {
         String format = scanner.next();
         if (format.equals("P2")) {
-            buffer = scanner.nextLine();
-            buffer = scanner.nextLine();
+            while (buffer.compareTo("# Created by GIMP version 2.10.32 PNM plug-in") == 0 || buffer.compareTo("") == 0){
+                buffer = scanner.nextLine();
+            }
             width = readInt(scanner.next());
             height = readInt(scanner.next());
             maximum = readInt(scanner.next());

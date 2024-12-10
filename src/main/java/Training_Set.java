@@ -13,8 +13,8 @@ public class Training_Set {
     }
 
     private void TrainEpochs(){
-        for(int i = 0; i <= num_classes; i++){
-            Epoch e = new Epoch(images,i);
+        for(int i = 0; i < num_classes; i++){
+            Epoch e = new Epoch(images,i,num_classes);
             e.runNEpoch(100);
             training_set.add(e);
         }

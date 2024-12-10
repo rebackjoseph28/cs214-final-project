@@ -7,10 +7,10 @@ public class Epoch{
     final double learningRate = 0.01;
     final double lambda = 0.001;
     
-    public Epoch(ArrayList<ImageHistogram> images, int N){
+    public Epoch(ArrayList<ImageHistogram> images, int N, int num_classes){
         this.images = images;
         this.N = N;
-        p = new Perceptron((images.get(0)),N);
+        p = new Perceptron((images.get(0)),N,num_classes);
     }
 
     public void runEpoch(){
