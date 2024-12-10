@@ -31,7 +31,7 @@ public class Classifier {
     
 
     private void addToList(Epoch e, ImageHistogram image, double current){
-        int class_num = e.N-1;
+        int class_num = e.N;
         //System.out.println("Class: " + class_num);
         String out = names.get(class_num);
         image.setBestFit(out);

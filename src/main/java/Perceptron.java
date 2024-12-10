@@ -2,7 +2,9 @@ public class Perceptron{
     ImageHistogram image;
     int N,d;
     double y = 0;
-    double[] weights = new double[65];    
+    double[] weights = new double[65]; 
+    double learningRate;
+    double lambda;   
 
     public Perceptron(ImageHistogram image, int N){
         this.image = image;
@@ -15,6 +17,8 @@ public class Perceptron{
     }
 
     public void updateWeights(double learningRate, double lambda){
+        this.learningRate = learningRate;
+        this.lambda = lambda;
         for(int index = 0; index < 64; index++){
             //regularized to penalize large values
             weights[index] +=  learningRate * ((d-y) * image.getHistogram()[index] - lambda * weights[index]);
@@ -58,7 +62,7 @@ public class Perceptron{
     public double evaluateImage(ImageHistogram im){
         double y_out = 0.0;
         for (int i = 0; i < 64; i++){
-            y_out += weights[i]*(im.getHistogram()[i]);
+            y_out += learningRate * ((d-y) * image.getHistogram()[i] - lambda * weights[i]);
         }
         y_out += findLabel(im.getFilename()) == N ? 1-y : -1-y;
         System.out.println("EVAL: " + N + ":" + im.getFilename() + ", " + y_out);

@@ -29,3 +29,8 @@ gradle run -q --args="'input_files/train.txt' 'input_files/test.txt' 'input_file
 - Added a new classifier class
 - Added class labels
 - Added regularization
+
+## Dataset Augmetor
+- called dataset.py
+- to run you'll have to run it on your own machine I couldn't get it working on this machine
+I tried using a venv, but it worked on my machine so I just copied the files over
