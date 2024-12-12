@@ -44,11 +44,11 @@ classa_9.pgm: nine
 ```
 ### The Images
 Example Training Image:
-![number](.github/class8_4.pgm?raw=true "class8_4.pgm")
+![number](.github/class8_4.png?raw=true "class8_4.pgm")
 Example Augmented Image:
-![number](input_files/train/class8_4_aug_5.png?raw=true "class8_4_aug_5.pgm")
+![number](.github/class8_4_aug_5.png?raw=true "class8_4_aug_5.pgm")
 Example Test Image:
-![number](input_files/test/classa_17.png?raw=true "classa_17.pgm")
+![number](input_files/classa_17.png?raw=true "classa_17.pgm")
 
 ## Issues came across along the way
 - Gimp adds an extra line to pgm files
