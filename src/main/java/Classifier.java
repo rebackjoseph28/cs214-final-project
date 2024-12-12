@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Stream;
 public class Classifier {
     ArrayList<ImageHistogram> images;
     ArrayList<Epoch> epochs;
@@ -14,16 +13,14 @@ public class Classifier {
 
     public void classify() {
         for (ImageHistogram image : images) {
-            int bestFitIndex = -1;
             int prediction [] = new int[names.size()];
             for (int i = 0; i < epochs.size(); i++) {
                 Epoch e = epochs.get(i);
-                int current = (int)(e.getPerceptron().evaluateImage(image));
+                int current = e.getPerceptron().evaluateImage(image)-1;
                 prediction[current]++;
             }
             predictionOut(prediction, image);
-            bestFitIndex = findBestFit(prediction); 
-            addToList(bestFitIndex-1, image);
+            addToList(findBestFit(prediction), image);
         }
     }
 
@@ -40,7 +37,10 @@ public class Classifier {
         int max = -1;
         int maxIndex = -1;
         for (int i = 0; i < prediction.length; i++){
-            if (prediction[i] > max) maxIndex = i;
+            if (prediction[i] > max){
+                maxIndex = i;
+                max = prediction[i];
+            } 
         }
         return maxIndex;
     }

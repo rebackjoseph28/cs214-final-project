@@ -63,7 +63,7 @@ public class Perceptron{
         updateWeights();
     }
 
-    public double evaluateImage(ImageHistogram im){
+    public int evaluateImage(ImageHistogram im){
         double outputs[] = new double[num_classes];
         for (int i = 0; i < num_classes; i++) {
             outputs[i] = weights[(i * 64 + 64)]; // Bias term for this class
@@ -71,11 +71,10 @@ public class Perceptron{
                 outputs[i] += weights[(i * 64 + i)] * im.getHistogram()[i];
             }
         }
-        //System.out.print(im.getFilename());
         return predictClass(outputs);
     }
 
-    private double predictClass(double outputs[]){
+    private int predictClass(double outputs[]){
         int predictedClass = -1;
         double maxOutput = Double.NEGATIVE_INFINITY;
         for (int i = 0; i < num_classes; i++) {
@@ -84,7 +83,6 @@ public class Perceptron{
                 predictedClass = i + 1;
             }
         }
-        //System.out.println(" Predicted: "+predictedClass);
         return predictedClass;
     }
 }
