@@ -2,7 +2,7 @@ public class Perceptron{
     ImageHistogram image;
     int N,d;
     double y = 0;
-    double[] weights = new double[65]; 
+    double[] weights;
     double learningRate;
     double lambda;  
     int num_classes; 
@@ -11,6 +11,7 @@ public class Perceptron{
         this.image = image;
         this.N = N;
         this.num_classes = num_classes;
+        this.weights = new double[65*num_classes]; 
     }
 
     public void updateImage(ImageHistogram image){
@@ -19,11 +20,18 @@ public class Perceptron{
     }
 
     public void updateWeights(){
-        for(int index = 0; index < 64; index++){
-            //regularized to penalize large values
-            weights[index] +=  learningRate * ((d-y) * image.getHistogram()[index] - lambda * weights[index]);
+        for (int classIndex = 0; classIndex < num_classes; classIndex++) {
+            // Update bias
+            weights[classIndex * 65 + 64] += learningRate * ((classIndex == d ? 1 : 0) - y);
+
+            // Update weights for features
+            for (int i = 0; i < 64; i++) {
+                double target = (classIndex == d ? 1 : 0);
+                weights[classIndex * 65 + i] += learningRate * 
+                    (target - y) * image.getHistogram()[i] 
+                    - lambda * weights[classIndex * 65 + i];
+            }
         }
-        weights[64] += learningRate * (d - y);
     }
 
     public void updatePerceptron(){
@@ -64,6 +72,7 @@ public class Perceptron{
                 outputs[i] += weights[(i * 64 + i)] * im.getHistogram()[i];
             }
         }
+        System.out.print(im.getFilename());
         return predictClass(outputs);
     }
 
@@ -76,6 +85,7 @@ public class Perceptron{
                 predictedClass = i + 1;
             }
         }
+        System.out.println(" Predicted: "+predictedClass);
         return predictedClass;
     }
 }
