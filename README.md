@@ -42,7 +42,13 @@ classa_7.pgm: nine
 classa_8.pgm: eight
 classa_9.pgm: nine
 ```
-
+### The Images
+Example Training Image:
+![number](input_files/train/class0_1.pgm?raw=true "class0_1.pgm")
+Example Augmented Image:
+![number](input_files/train/class0_1_aug_1.pgm?raw=true "class0_1_aug_1.pgm")
+Example Test Image:
+![number](input_files/test/classa_1.pgm?raw=true "classa_1.pgm")
 
 ## Issues came across along the way
 - Gimp adds an extra line to pgm files
