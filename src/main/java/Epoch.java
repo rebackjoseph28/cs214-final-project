@@ -4,7 +4,7 @@ public class Epoch{
     int N;
     ArrayList<ImageHistogram> images;
     Perceptron p;
-    final double learningRate = 0.01;
+    final double learningRate = 0.1;
     final double lambda = 0.01;
     
     public Epoch(ArrayList<ImageHistogram> images, int N, int num_classes){

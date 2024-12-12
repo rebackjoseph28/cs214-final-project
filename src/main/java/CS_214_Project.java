@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CS_214_Project {
-    public static boolean debug = true;
+    public static boolean debug = false;
     public static void main(String[] args){
         //  /\_/\  
         // ( o.o ) {Welcome to the Final Countdown}
