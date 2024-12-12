@@ -28,8 +28,7 @@ public class Perceptron{
             for (int i = 0; i < 64; i++) {
                 double target = (classIndex == d ? 1 : 0);
                 weights[classIndex * 65 + i] += learningRate * 
-                    (target - y) * image.getHistogram()[i] 
-                    - lambda * weights[classIndex * 65 + i];
+                    (target - y) * image.getHistogram()[i] - lambda * weights[classIndex * 65 + i];
             }
         }
     }
@@ -41,7 +40,7 @@ public class Perceptron{
         }
     }
 
-    public double[] getWeight(){
+    public double[] getWeights(){
         return weights;
     }
 
@@ -72,7 +71,7 @@ public class Perceptron{
                 outputs[i] += weights[(i * 64 + i)] * im.getHistogram()[i];
             }
         }
-        System.out.print(im.getFilename());
+        //System.out.print(im.getFilename());
         return predictClass(outputs);
     }
 
@@ -85,7 +84,7 @@ public class Perceptron{
                 predictedClass = i + 1;
             }
         }
-        System.out.println(" Predicted: "+predictedClass);
+        //System.out.println(" Predicted: "+predictedClass);
         return predictedClass;
     }
 }

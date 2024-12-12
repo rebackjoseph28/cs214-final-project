@@ -25,7 +25,7 @@ public class Epoch{
 
     public String toString(){
         String out = "";
-        double[] weights = p.getWeight();
+        double[] weights = p.getWeights();
         for (double item : weights){
             out += String.format("%.6f", item) + " ";
         }

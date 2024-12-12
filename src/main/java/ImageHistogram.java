@@ -153,7 +153,6 @@ public class ImageHistogram {
             i = checkInput(i);
         } catch (NumberFormatException numerr) {
             System.err.println("Error: Invalid Character, non integer");
-            //System.exit(0);
         }
         return i;
     }
@@ -196,7 +195,6 @@ public class ImageHistogram {
     private int checkInput(int num) {
         if (num < 0 || num > 255) {
             System.err.println("Error: Invalid Character, out of bounds");
-            //System.exit(0);
             return 0;
         } else
             return num;
