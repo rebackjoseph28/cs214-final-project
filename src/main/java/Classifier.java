@@ -20,7 +20,7 @@ public class Classifier {
                 prediction[current]++;
             }
             predictionOut(prediction, image);
-            addToList(findBestFit(prediction), image);
+            addToList(prediction, image);
         }
     }
 
@@ -40,13 +40,14 @@ public class Classifier {
             if (prediction[i] > max){
                 maxIndex = i;
                 max = prediction[i];
-            } 
+            }
         }
         return maxIndex;
     }
 
-    private void addToList(int bestFitIndex, ImageHistogram image){
-        String out = names.get(bestFitIndex);
+    private void addToList(int prediction[], ImageHistogram image){
+        String out = "\n\t Best Guess: " + names.get(findBestFit(prediction));
+        out += "\n\t Confidence: " + (prediction[findBestFit(prediction)]/epochs.size())*100 + "%";
         image.setBestFit(out);
     }
 
@@ -54,7 +55,7 @@ public class Classifier {
     public String toString(){
         String out = "";
         for (ImageHistogram image : images){
-            out += image.getFilename() + ": " + image.getBestFit();
+            out += image.getFilename() + " - " + image.getBestFit();
             out += "\n";
         }
         return out;

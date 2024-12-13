@@ -16,18 +16,28 @@ is most like, i.e. if I drew a two, it should be classified and labeled as a two
 
 ### To Run
 ```
-gradle run -q --args="'input_files/train.txt' 'input_files/test1.txt' 'input_files/class.txt'"
+gradle run -q --args="'input_files/train.txt' 'input_files/test0.txt' 'input_files/class.txt'"
 ```
 Output (as of 12/11 8:45pm)
 ```
-Number of Classes: 10
-classa_10.pgm: nine
-classa_11.pgm: seven
-classa_12.pgm: eight
-classa_13.pgm: eight
-classa_7.pgm: nine
-classa_8.pgm: eight
-classa_9.pgm: nine
+classa_1.pgm - 
+         Best Guess: seven
+         Confidence: 100%
+classa_2.pgm - 
+         Best Guess: nine
+         Confidence: 100%
+classa_3.pgm - 
+         Best Guess: eight
+         Confidence: 100%
+classa_4.pgm - 
+         Best Guess: nine
+         Confidence: 100%
+classa_5.pgm - 
+         Best Guess: nine
+         Confidence: 100%
+classa_6.pgm - 
+         Best Guess: eight
+         Confidence: 100%
 ```
 ### The Images
 Example Training Image:
@@ -38,9 +48,10 @@ Example Test Image:
 ![number](.github/classa_17.png?raw=true "classa_17.pgm")
 
 ## Issues came across along the way
-- Gimp adds an extra line to pgm files
+- GIMP adds an extra line to pgm files
 - Index out of range
 - The comparison not working
+- Predicting the same image
 
 ## Things I've modified
 - Added a class name reader
@@ -48,7 +59,9 @@ Example Test Image:
 - Added class labels
 - Added regularization
 - dataset augmentation
+- Added a debug flag that adds some more outputs
 - Shifted to a many vs one perceptron
+- Added a confidence measure
 
 ## Dataset Augmetor
 - called dataset.py

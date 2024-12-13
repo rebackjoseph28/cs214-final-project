@@ -26,7 +26,7 @@ public class Training_Set {
             classTypes.add(image.getClassType());
         }
         num_classes = classTypes.size();
-        System.out.println("Number of Classes: " + num_classes);
+        if (CS_214_Project.debug) System.out.println("Number of Classes: " + num_classes);
         if (num_classes < 2) System.err.println("ERROR TOO FEW CLASSES");
     }
 
