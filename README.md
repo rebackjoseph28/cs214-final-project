@@ -2,7 +2,7 @@
 This code is based on the final perceptron evaluation created in PA9 for CS214. 
 
 ## The Goal
-Attempt to classify specific test images, for handwriting detection in this example
+Attempt to classify specific test images, for handwriting detection in my example
 
 ## Running the Code
 The program takes three arguments: training images list, test image list, class names
@@ -10,15 +10,17 @@ The program takes three arguments: training images list, test image list, class 
 It will then output the filename followed by what the code thinks is the most similar class.
 
 What's nice is you can name your classes based on what images are given, in my test example
-I've created a dataset of over 40 images of handwritten numbers, and then a test set of some more
+I've created a dataset of over 360 images of handwritten numbers, and then a test set of some more
 Instead of seeing just a confidence number, I can actually see what class it thinks the image
-is most like, i.e. if I drew a two, it should be classified and labeled as a two in the final output.
+is most like too, i.e. if I drew a two, it should be classified and labeled as a two in the final output.
+
+Final Demonstation Video: https://youtu.be/P6qeYYjfTvc
 
 ### To Run
 ```
 gradle run -q --args="'input_files/train.txt' 'input_files/test0.txt' 'input_files/class.txt'"
 ```
-Output (as of 12/11 8:45pm)
+Output (as of 12/13 11:00am)
 ```
 classa_1.pgm - 
          Best Guess: seven

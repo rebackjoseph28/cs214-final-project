@@ -9,8 +9,8 @@ public class CS_214_Project {
         // ( o.o ) {Welcome to the Final Countdown}
         //  > ^ < 
         // "The end of a melody is not its goal: but nonetheless, had the melody not reached its end it would not have reached its goal either." --Someone 
-        
-        //try{
+        long start = System.currentTimeMillis();
+        try{
             File_Processor fp_tr = new File_Processor(args[0]);
             File_Processor fp_ts = new File_Processor(args[1]);
             
@@ -23,11 +23,12 @@ public class CS_214_Project {
             Classifier cf = new Classifier(test_set, tr.getEpochs(), cr.getClassList());
             System.out.print(cf.toString());
 
-        /**
-         * } catch (IndexOutOfBoundsException e){
+        
+        } catch (IndexOutOfBoundsException e){
             System.err.println("Error: No Arguments Given");
             System.exit(0);
         }
-         */
+        long end = System.currentTimeMillis();
+        if (debug) System.out.println("Runtime: " + (end - start));
     }
 }
