@@ -16,28 +16,15 @@ is most like, i.e. if I drew a two, it should be classified and labeled as a two
 
 ### To Run
 ```
-gradle run -q --args="'input_files/train.txt' 'input_files/test.txt' 'input_files/class.txt'"
+gradle run -q --args="'input_files/train.txt' 'input_files/test1.txt' 'input_files/class.txt'"
 ```
 Output (as of 12/11 8:45pm)
 ```
 Number of Classes: 10
-classa_1.pgm: seven
 classa_10.pgm: nine
 classa_11.pgm: seven
 classa_12.pgm: eight
 classa_13.pgm: eight
-classa_14.pgm: eight
-classa_15.pgm: eight
-classa_16.pgm: eight
-classa_17.pgm: eight
-classa_18.pgm: eight
-classa_19.pgm: seven
-classa_2.pgm: nine
-classa_20.pgm: eight
-classa_3.pgm: eight
-classa_4.pgm: nine
-classa_5.pgm: nine
-classa_6.pgm: eight
 classa_7.pgm: nine
 classa_8.pgm: eight
 classa_9.pgm: nine
@@ -48,7 +35,7 @@ Example Training Image:
 Example Augmented Image:
 ![number](.github/class8_4_aug_5.png?raw=true "class8_4_aug_5.pgm")
 Example Test Image:
-![number](input_files/classa_17.png?raw=true "classa_17.pgm")
+![number](.github/classa_17.png?raw=true "classa_17.pgm")
 
 ## Issues came across along the way
 - Gimp adds an extra line to pgm files

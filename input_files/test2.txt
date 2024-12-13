@@ -1,0 +1,7 @@
+input_files/test/classa_14.pgm
+input_files/test/classa_15.pgm
+input_files/test/classa_16.pgm
+input_files/test/classa_17.pgm
+input_files/test/classa_18.pgm
+input_files/test/classa_19.pgm
+input_files/test/classa_20.pgm
